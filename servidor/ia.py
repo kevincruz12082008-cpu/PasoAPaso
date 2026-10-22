@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 """Intérprete de órdenes con reglas locales y, si hace falta, Gemini.
 
 Primero se usan las reglas de siempre (rápidas, gratis y sin internet).
@@ -16,7 +20,7 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass, field
 
-from datos.catalogo_apps import CATALOGO
+from pasoapaso.datos.catalogo_apps import CATALOGO
 from pasoapaso.datos.sitios import SITIOS
 from pasoapaso.nucleo.interprete import Orden, interpretar
 from pasoapaso.nucleo.validacion import validar_ordenes
