@@ -1,0 +1,43 @@
+<div class="admin-cabecera">
+  <div>
+    <p class="etiqueta">Seguridad</p>
+    <h1>Mi clave de administrador</h1>
+    <p>Esta clave protege los datos de todas las personas. Cámbiala si alguien más la vio.</p>
+  </div>
+</div>
+
+{{mensajes}}
+
+<div class="admin-grid-2">
+  <section class="tarjeta-panel">
+    <form method="post" action="/admin/clave" class="formulario">
+      {{csrf}}
+      <div class="campo">
+        <label for="actual">Clave actual</label>
+        <input id="actual" name="actual" type="password" autocomplete="current-password" required>
+      </div>
+      <div class="campo">
+        <label for="nueva">Clave nueva (mínimo 8 caracteres)</label>
+        <input id="nueva" name="nueva" type="password" autocomplete="new-password" minlength="8" required>
+      </div>
+      <div class="campo">
+        <label for="repetir">Repite la clave nueva</label>
+        <input id="repetir" name="repetir" type="password" autocomplete="new-password" minlength="8" required>
+      </div>
+      <button class="boton boton-primario" type="submit">Guardar clave nueva</button>
+    </form>
+  </section>
+
+  <section class="tarjeta-panel">
+    <h2>Recomendaciones</h2>
+    <ul class="lista-check">
+      <li>Usa una clave larga, de al menos 12 caracteres.</li>
+      <li>No uses la misma clave de tu correo o de tus redes.</li>
+      <li>No compartas la clave con las personas que usan la app.</li>
+      <li>Si alguien más la vio, cámbiala ahora mismo.</li>
+    </ul>
+    <div class="aviso aviso-info">
+      <strong>Clave inicial:</strong> si nunca la cambiaste, usa la que aparece en el archivo <code>.env</code> (o la de ejemplo) y cámbiala hoy.
+    </div>
+  </section>
+</div>

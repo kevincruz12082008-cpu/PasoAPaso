@@ -1,0 +1,67 @@
+<div class="admin-cabecera">
+  <div>
+    <p class="etiqueta">Motor de comprensión</p>
+    <h1>Inteligencia artificial</h1>
+    <p>La IA solo ayuda a entender mejor la orden. Nunca ejecuta nada por su cuenta: sus respuestas pasan por una lista de acciones permitidas.</p>
+  </div>
+</div>
+
+{{mensajes}}
+
+<div class="stats-grid stats-grid-3">
+  <div class="tarjeta-stat tarjeta-stat-teal"><span class="stat-valor">{{configurada}}</span><span class="stat-etiqueta">Clave de Gemini</span><span class="stat-detalle">Se configura en el archivo .env</span></div>
+  <div class="tarjeta-stat tarjeta-stat-violeta"><span class="stat-valor">{{activa_chip}}</span><span class="stat-etiqueta">Estado del motor</span><span class="stat-detalle">Se puede apagar sin romper la app</span></div>
+  <div class="tarjeta-stat tarjeta-stat-azul"><span class="stat-valor">{{modelo}}</span><span class="stat-etiqueta">Modelo</span><span class="stat-detalle">Se cambia con GEMINI_MODELO</span></div>
+</div>
+
+<div class="admin-grid-2">
+  <section class="tarjeta-panel">
+    <h2>Cómo funciona</h2>
+    <ol class="lista-numerada">
+      <li>La app primero usa sus reglas locales, que son rápidas y no gastan internet.</li>
+      <li>Si la frase no se entiende (o tiene errores), el servidor le pide a Gemini que la traduzca a una acción del catálogo.</li>
+      <li>El servidor revisa que la acción sea válida y segura. Si no lo es, se descarta y se usan las reglas.</li>
+      <li>La orden se guarda en la base de datos y se ejecuta en la computadora de la persona.</li>
+    </ol>
+    <div class="aviso aviso-info">
+      <strong>Privacidad:</strong> a Gemini solo se le envía el texto de la orden. No se envían nombres, teléfonos, claves ni datos de la cuenta.
+    </div>
+  </section>
+
+  <section class="tarjeta-panel">
+    <h2>Configuración</h2>
+    <p class="texto-pequeno">Agrega estas líneas al archivo <code>.env</code> en la carpeta del proyecto y reinicia el servidor:</p>
+    <pre class="json">GEMINI_API_KEY=tu_clave_de_google_ai_studio
+GEMINI_MODELO=gemini-2.5-flash</pre>
+    <p class="texto-pequeno">La clave se obtiene gratis en Google AI Studio. Si no hay clave, PasoAPaso sigue funcionando con las reglas locales.</p>
+  </section>
+</div>
+
+<section class="tarjeta-panel">
+  <h2>Opciones del sitio</h2>
+  <form method="post" action="/admin/ia" class="formulario">
+    {{csrf}}
+    <label class="casilla">
+      <input type="checkbox" name="ia_activa" value="1" {{activa_checked}}>
+      <span><strong>Usar Gemini cuando las reglas no entiendan.</strong> Si se apaga, la app solo usa el diccionario local.</span>
+    </label>
+    <label class="casilla">
+      <input type="checkbox" name="permitir_registro" value="1" {{registro_checked}}>
+      <span><strong>Permitir que se creen cuentas nuevas.</strong> Desmárcalo si quieres cerrar el registro temporalmente.</span>
+    </label>
+    <button class="boton boton-primario" type="submit">Guardar opciones</button>
+  </form>
+</section>
+
+<section class="tarjeta-panel">
+  <div class="panel-cabecera">
+    <div><h2>Consultas resueltas con IA</h2><p class="texto-pequeno">Las últimas órdenes que necesitaron razonamiento extra.</p></div>
+    <a class="boton boton-suave boton-pequeno" href="/admin/prompts?ia=1">Ver todas</a>
+  </div>
+  <div class="tabla-envoltura">
+    <table class="tabla">
+      <thead><tr><th>Consulta</th><th>Cómo</th><th>Resultado</th><th>Inteligencia</th><th>Fecha</th></tr></thead>
+      <tbody>{{filas}}</tbody>
+    </table>
+  </div>
+</section>

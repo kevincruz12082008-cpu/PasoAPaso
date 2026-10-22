@@ -1,0 +1,28 @@
+# Despliegue de ejemplo en Render.
+# Cambia la clave del administrador y configura GEMINI_API_KEY en el panel.
+services:
+  - type: web
+    name: pasoapaso
+    runtime: docker
+    plan: free
+    envVars:
+      - key: PASOAPASO_PRODUCCION
+        value: "1"
+      - key: PASOAPASO_PROXY
+        value: "1"
+      - key: PASOAPASO_SECRETO
+        generateValue: true
+      - key: PASOAPASO_ADMIN_USUARIO
+        value: admin
+      - key: PASOAPASO_ADMIN_CLAVE
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODELO
+        value: gemini-2.5-flash
+      - key: PASOAPASO_DATOS
+        value: /app/datos
+    disk:
+      name: pasoapaso-datos
+      mountPath: /app/datos
+      sizeGB: 1

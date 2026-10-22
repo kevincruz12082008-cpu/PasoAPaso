@@ -1,0 +1,86 @@
+<section class="portal-cabecera">
+  <div class="portal-identidad">
+    <span class="avatar avatar-grande">{{iniciales}}</span>
+    <div>
+      <p class="etiqueta">Mi cuenta</p>
+      <h1>Hola, {{nombre}}</h1>
+      <p class="portal-datos">{{telefono}} · En PasoAPaso desde {{desde}}</p>
+      <div class="portal-chips"><span class="chip chip-teal">{{experiencia}}</span></div>
+    </div>
+  </div>
+  <div class="portal-acciones">
+    {{boton_descarga}}
+    <a class="boton boton-contorno" href="/soporte/">Centro de ayuda</a>
+  </div>
+</section>
+
+{{mensajes}}
+
+<div class="portal-stats">
+  <div class="tarjeta-stat tarjeta-stat-teal"><span class="stat-valor">{{total}}</span><span class="stat-etiqueta">Consultas guardadas</span><span class="stat-detalle">Todo lo que le has pedido a PasoAPaso</span></div>
+  <div class="tarjeta-stat tarjeta-stat-azul"><span class="stat-valor">{{ciudad}}</span><span class="stat-etiqueta">Tu ciudad</span><span class="stat-detalle">Puedes cambiarla hablando con el administrador</span></div>
+  <div class="tarjeta-stat tarjeta-stat-violeta"><span class="stat-valor">4 a 8</span><span class="stat-etiqueta">Números de tu clave</span><span class="stat-detalle">Fácil de recordar y de escribir</span></div>
+</div>
+
+<section class="tarjeta-panel">
+  <div class="panel-cabecera">
+    <div><h2>Tus últimas consultas</h2><p class="texto-pequeno">Toca una para ver qué hizo PasoAPaso y qué te explicó.</p></div>
+    <a class="boton boton-suave boton-pequeno" href="/portal">Actualizar</a>
+  </div>
+  <div class="tabla-envoltura">
+    <table class="tabla">
+      <thead><tr><th>Lo que pediste</th><th>Cómo</th><th>Resultado</th><th>Inteligencia</th><th>Fecha</th></tr></thead>
+      <tbody>{{filas}}</tbody>
+    </table>
+  </div>
+</section>
+
+<div class="portal-grid">
+  <section class="tarjeta-panel">
+    <h2>Cambiar mi clave</h2>
+    <p class="texto-pequeno">Tu clave es solo para ti. Si alguien la sabe, cámbiala aquí.</p>
+    <form method="post" action="/portal/clave" class="formulario">
+      {{csrf}}
+      <div class="campo">
+        <label for="actual">Clave actual</label>
+        <input id="actual" name="actual" type="password" inputmode="numeric" pattern="[0-9]{4,8}" autocomplete="current-password" required>
+      </div>
+      <div class="fila-campos">
+        <div class="campo">
+          <label for="nueva">Clave nueva</label>
+          <input id="nueva" name="nueva" type="password" inputmode="numeric" pattern="[0-9]{4,8}" autocomplete="new-password" required>
+        </div>
+        <div class="campo">
+          <label for="repetir">Repite la nueva</label>
+          <input id="repetir" name="repetir" type="password" inputmode="numeric" pattern="[0-9]{4,8}" autocomplete="new-password" required>
+        </div>
+      </div>
+      <button class="boton boton-primario" type="submit">Guardar mi clave nueva</button>
+    </form>
+  </section>
+
+  <section class="tarjeta-panel tarjeta-peligro">
+    <h2>Borrar mi cuenta</h2>
+    <p class="texto-pequeno">Esto elimina tu cuenta y todas tus consultas. No se puede deshacer.</p>
+    <form method="post" action="/portal/eliminar" class="formulario" data-confirmar="¿Seguro que quieres borrar tu cuenta y todas tus consultas?">
+      {{csrf}}
+      <div class="campo">
+        <label for="confirmar">Escribe <strong>ELIMINAR</strong> para confirmar</label>
+        <input id="confirmar" name="confirmar" type="text" autocomplete="off" placeholder="ELIMINAR" required>
+      </div>
+      <button class="boton boton-peligro" type="submit">Borrar mi cuenta para siempre</button>
+    </form>
+  </section>
+</div>
+
+<section class="tarjeta-panel panel-ayuda">
+  <div>
+    <h2>¿Cómo uso PasoAPaso en mi computadora?</h2>
+    <p>Esta página es tu cuenta en internet. Para que PasoAPaso mueva el mouse y te enseñe, necesitas abrir la app en tu computadora con Windows. Al iniciar, entra con tu teléfono y tu clave.</p>
+  </div>
+  <div class="mini-pasos">
+    <span><strong>1</strong> Abre PasoAPaso en tu PC</span>
+    <span><strong>2</strong> Entra con tu cuenta</span>
+    <span><strong>3</strong> Presiona el micrófono y habla</span>
+  </div>
+</section>

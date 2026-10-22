@@ -1,0 +1,237 @@
+:root {
+  --pp-acento: #0f766e;
+  --pp-acento-oscuro: #115e59;
+  --pp-acento-claro: #ccfbf1;
+  --pp-fondo: #fff7ec;
+  --pp-borde: #e2d5c0;
+  --pp-texto: #1e293b;
+  --bs-primary: #0f766e;
+  --bs-primary-rgb: 15, 118, 110;
+  --bs-link-color: #0f766e;
+  --bs-link-color-rgb: 15, 118, 110;
+  --bs-link-hover-color: #115e59;
+  --bs-body-bg: #fff7ec;
+  --bs-body-color: #1e293b;
+  --bs-body-font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--pp-fondo);
+  color: var(--pp-texto);
+}
+
+.btn-primary {
+  --bs-btn-bg: #0f766e;
+  --bs-btn-border-color: #0f766e;
+  --bs-btn-hover-bg: #115e59;
+  --bs-btn-hover-border-color: #115e59;
+  --bs-btn-active-bg: #134e4a;
+  --bs-btn-active-border-color: #134e4a;
+  --bs-btn-disabled-bg: #0f766e;
+  --bs-btn-disabled-border-color: #0f766e;
+  --bs-btn-focus-shadow-rgb: 15, 118, 110;
+}
+
+.text-bg-primary {
+  background-color: var(--pp-acento) !important;
+}
+
+.barra {
+  border-color: var(--pp-borde) !important;
+}
+
+.marca {
+  color: var(--pp-acento);
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+
+.marca:hover {
+  color: var(--pp-acento-oscuro);
+}
+
+.navbar .nav-link {
+  font-weight: 600;
+  color: var(--pp-texto);
+}
+
+.navbar .nav-link:hover {
+  color: var(--pp-acento);
+}
+
+.hero {
+  background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
+  color: #ffffff;
+}
+
+.hero-etiqueta {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pp-acento-claro);
+}
+
+.hero .btn-light {
+  color: var(--pp-acento-oscuro);
+  font-weight: 700;
+}
+
+.tarjeta-hero {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.ejemplo-orden {
+  background: #ffffff;
+  color: var(--pp-texto);
+  border-radius: 0.6rem;
+  padding: 0.75rem 1rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.tecla {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  background: #f1f5f9;
+  color: var(--pp-texto);
+  border: 1px solid #94a3b8;
+  border-bottom-width: 3px;
+  border-radius: 0.45rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.seccion {
+  padding: 4rem 0;
+}
+
+.seccion-blanca {
+  background: #ffffff;
+  border-top: 1px solid var(--pp-borde);
+  border-bottom: 1px solid var(--pp-borde);
+}
+
+.titulo-seccion {
+  font-weight: 800;
+  color: var(--pp-acento);
+}
+
+.subtitulo-seccion {
+  color: #64748b;
+  margin-bottom: 1.75rem;
+}
+
+.tarjeta {
+  border: 1px solid var(--pp-borde);
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(30, 41, 59, 0.05);
+}
+
+.paso-numero,
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: var(--pp-acento);
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.avatar {
+  width: 3.4rem;
+  height: 3.4rem;
+  background: var(--pp-acento-claro);
+  color: var(--pp-acento-oscuro);
+}
+
+code {
+  color: var(--pp-acento-oscuro);
+  background: #f0fdfa;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.3rem;
+}
+
+.bloque-codigo {
+  background: #1e293b;
+  border-radius: 0.6rem;
+  padding: 0.8rem 1rem;
+  overflow-x: auto;
+}
+
+.bloque-codigo code {
+  background: transparent;
+  color: #99f6e4;
+  padding: 0;
+}
+
+.tabla-comandos {
+  --bs-table-bg: transparent;
+}
+
+.tabla-comandos thead th {
+  background: var(--pp-acento-claro);
+  color: var(--pp-acento-oscuro);
+  border-bottom: 0;
+}
+
+.alerta-modo {
+  --bs-alert-bg: var(--pp-acento-claro);
+  --bs-alert-border-color: #99f6e4;
+  --bs-alert-color: var(--pp-acento-oscuro);
+  border-radius: 0.8rem;
+}
+
+.accordion {
+  --bs-accordion-border-color: var(--pp-borde);
+  --bs-accordion-active-bg: var(--pp-acento-claro);
+  --bs-accordion-active-color: var(--pp-acento-oscuro);
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(15, 118, 110, 0.25);
+  --bs-accordion-btn-focus-border-color: var(--pp-acento);
+}
+
+.accordion-button {
+  font-weight: 600;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--pp-acento);
+  box-shadow: 0 0 0 0.25rem rgba(15, 118, 110, 0.2);
+}
+
+.form-check-input:checked {
+  background-color: var(--pp-acento);
+  border-color: var(--pp-acento);
+}
+
+.reporte-texto {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.9rem;
+  background: #f8fafc;
+}
+
+.pie {
+  background: #1e293b;
+  color: #cbd5e1;
+}
+
+.pie a {
+  color: #99f6e4;
+  text-decoration: none;
+}
+
+.pie a:hover {
+  text-decoration: underline;
+}

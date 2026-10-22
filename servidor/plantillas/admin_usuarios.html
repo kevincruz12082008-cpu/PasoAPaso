@@ -1,0 +1,35 @@
+<div class="admin-cabecera">
+  <div>
+    <p class="etiqueta">Personas</p>
+    <h1>Usuarios registrados</h1>
+    <p>{{total}} personas han creado una cuenta en PasoAPaso.</p>
+  </div>
+  <div class="admin-cabecera-acciones">
+    <a class="boton boton-suave" href="/admin/exportar.csv">⬇ Exportar consultas</a>
+  </div>
+</div>
+
+{{mensajes}}
+
+<section class="tarjeta-panel">
+  <form method="get" action="/admin/usuarios" class="filtros">
+    <div class="campo campo-crece">
+      <label for="q">Buscar por nombre o teléfono</label>
+      <input id="q" name="q" type="search" value="{{q}}" placeholder="Ejemplo: María o 9999-9999">
+    </div>
+    <button class="boton boton-primario" type="submit">Buscar</button>
+    <a class="boton boton-suave" href="/admin/usuarios">Limpiar</a>
+  </form>
+</section>
+
+<section class="tarjeta-panel">
+  <div class="tabla-envoltura">
+    <table class="tabla">
+      <thead>
+        <tr><th>Persona</th><th>Experiencia</th><th>Consultas</th><th>Estado</th><th>Registro</th><th></th></tr>
+      </thead>
+      <tbody>{{filas}}</tbody>
+    </table>
+  </div>
+  {{paginacion}}
+</section>

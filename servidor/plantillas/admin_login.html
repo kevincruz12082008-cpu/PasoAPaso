@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Administración · PasoAPaso</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" href="/recursos/favicon.ico" sizes="any">
+  <link rel="icon" href="/recursos/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/estatico/estilos.css">
+</head>
+<body class="admin-login-fondo">
+  <main class="admin-login">
+    <div class="admin-login-marca">
+      <img src="/recursos/logo_128.png" width="78" height="78" alt="">
+      <div><strong>PasoAPaso</strong><span>Administración</span></div>
+    </div>
+
+    <div class="tarjeta-formulario">
+      <p class="etiqueta">Acceso privado</p>
+      <h1>Panel del administrador</h1>
+      <p class="texto-pequeno">Aquí puedes ver las personas registradas y todo lo que le piden a PasoAPaso.</p>
+      {{error}}
+      {{aviso}}
+      {{por_defecto}}
+      <form method="post" action="/admin/entrar" class="formulario">
+        {{csrf}}
+        <div class="campo">
+          <label for="usuario">Usuario</label>
+          <input id="usuario" name="usuario" type="text" autocomplete="username"
+                 value="{{usuario}}" placeholder="admin" required autofocus>
+        </div>
+        <div class="campo">
+          <label for="clave">Clave</label>
+          <div class="campo-clave">
+            <input id="clave" name="clave" type="password" autocomplete="current-password"
+                   placeholder="Tu clave de administrador" required>
+            <button type="button" class="ver-clave" data-ver-clave="clave" aria-label="Mostrar u ocultar la clave">👁</button>
+          </div>
+        </div>
+        <button class="boton boton-primario boton-ancho boton-grande" type="submit">Entrar al panel</button>
+      </form>
+      <p class="pie-formulario"><a href="/">← Volver al sitio</a></p>
+    </div>
+
+    <p class="admin-login-pie">PasoAPaso v{{version}} · {{anio}} · Acceso solo para el administrador</p>
+  </main>
+  <script src="/estatico/app.js" defer></script>
+</body>
+</html>

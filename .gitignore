@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+.deps/
+.tmp/
+.appdata/
+.pruebas/
+.pruebas_tmp/
+.pip-cache/
+datos/
+*.db
+*.db-wal
+*.db-shm
+.env
+capturas_app/
+recursos/PasoAPaso.zip

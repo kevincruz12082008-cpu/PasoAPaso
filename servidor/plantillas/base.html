@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{titulo}} · PasoAPaso</title>
+  <meta name="description" content="PasoAPaso: tu ayudante para aprender a usar la computadora, paso a paso.">
+  <meta name="theme-color" content="#0F766E">
+  <link rel="icon" href="/recursos/favicon.ico" sizes="any">
+  <link rel="icon" href="/recursos/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/recursos/logo_256.png">
+  <link rel="stylesheet" href="/estatico/estilos.css">
+</head>
+<body class="sitio {{clase_cuerpo}}">
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+  <header class="barra-sitio">
+    <div class="contenedor barra-contenido">
+      <a class="marca" href="/" aria-label="PasoAPaso, inicio">
+        <img src="/recursos/logo_64.png" width="42" height="42" alt="">
+        <span class="marca-texto"><strong>PasoAPaso</strong><small>Aprende a tu ritmo</small></span>
+      </a>
+      <nav class="nav-principal" aria-label="Principal">
+        {{nav}}
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenedor pagina">
+    {{aviso}}
+    {{contenido}}
+  </main>
+
+  <footer class="pie-sitio">
+    <div class="contenedor pie-contenido">
+      <div><strong>PasoAPaso</strong> · Tu ayudante para aprender a usar la computadora.</div>
+      <div class="pie-enlaces">
+        <a href="/soporte/">Centro de ayuda</a>
+        <a href="/privacidad">Privacidad</a>
+        <span>v{{version}}</span>
+      </div>
+    </div>
+  </footer>
+  {{scripts}}
+  <script src="/estatico/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="PasoAPaso">
+  <defs>
+    <linearGradient id="fondo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#14B8A6"/>
+      <stop offset="1" stop-color="#0D645F"/>
+    </linearGradient>
+    <filter id="sombra" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#064E4A" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect x="28" y="28" width="968" height="968" rx="230" fill="url(#fondo)" filter="url(#sombra)"/>
+  <path d="M70 70 H520 L250 420 L70 500 Z" fill="#FFFFFF" opacity="0.08"/>
+  <g>
+    <rect x="196" y="674" width="206" height="168" rx="44" fill="#CCFBF1"/>
+    <rect x="356" y="522" width="206" height="320" rx="44" fill="#F0FDFA"/>
+    <rect x="516" y="370" width="206" height="472" rx="44" fill="#FFFFFF"/>
+  </g>
+  <circle cx="820" cy="246" r="74" fill="#F97316"/>
+  <circle cx="820" cy="246" r="46" fill="#FDBA74"/>
+  <circle cx="802" cy="228" r="16" fill="#FFFFFF" opacity="0.75"/>
+  <g fill="#CCFBF1">
+    <circle cx="220" cy="566" r="11"/>
+    <circle cx="302" cy="470" r="9.5"/>
+    <circle cx="386" cy="374" r="8"/>
+  </g>
+</svg>

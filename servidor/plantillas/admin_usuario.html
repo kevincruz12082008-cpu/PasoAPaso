@@ -1,0 +1,51 @@
+<div class="migas"><a href="/admin/usuarios">← Volver a usuarios</a></div>
+
+<div class="admin-cabecera">
+  <div class="portal-identidad">
+    <span class="avatar avatar-grande">{{iniciales}}</span>
+    <div>
+      <p class="etiqueta">Ficha de la persona</p>
+      <h1>{{nombre}}</h1>
+      <p class="portal-datos">{{telefono}} · {{ciudad}}</p>
+      <div class="portal-chips">{{estado}} {{experiencia}}</div>
+    </div>
+  </div>
+  <div class="admin-cabecera-acciones admin-acciones-ficha">
+    <form method="post" action="/admin/usuarios/{{usuario_id}}/pin" data-confirmar="¿Generar una clave nueva para esta persona? La anterior dejará de funcionar.">
+      {{csrf}}
+      <button class="boton boton-suave" type="submit">Cambiar clave</button>
+    </form>
+    <form method="post" action="/admin/usuarios/{{usuario_id}}/activo">
+      {{csrf}}
+      <button class="boton boton-contorno" type="submit">Activar o desactivar</button>
+    </form>
+    <form method="post" action="/admin/usuarios/{{usuario_id}}/eliminar" data-confirmar="¿Borrar esta cuenta y TODAS sus consultas? No se puede deshacer.">
+      {{csrf}}
+      <input type="hidden" name="confirmar" value="ELIMINAR">
+      <button class="boton boton-peligro" type="submit">Borrar cuenta</button>
+    </form>
+  </div>
+</div>
+
+{{mensajes}}
+{{pin_html}}
+
+<div class="ficha-grid">
+  <div class="ficha"><span>Se registró</span><strong>{{desde}}</strong></div>
+  <div class="ficha"><span>Último acceso</span><strong>{{ultimo}}</strong></div>
+  <div class="ficha"><span>Edad</span><strong>{{edad}}</strong></div>
+  <div class="ficha"><span>Consultas</span><strong>{{consultas}}</strong></div>
+</div>
+
+<section class="tarjeta-panel">
+  <div class="panel-cabecera">
+    <div><h2>Consultas de {{nombre}}</h2><p class="texto-pequeno">Toca una consulta para ver qué hizo PasoAPaso.</p></div>
+  </div>
+  <div class="tabla-envoltura">
+    <table class="tabla">
+      <thead><tr><th>Lo que pidió</th><th>Cómo</th><th>Resultado</th><th>Inteligencia</th><th>Fecha</th></tr></thead>
+      <tbody>{{filas}}</tbody>
+    </table>
+  </div>
+  {{paginacion}}
+</section>

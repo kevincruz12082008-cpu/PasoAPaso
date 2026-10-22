@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Soporte técnico · PasoAPaso 2.0</title>
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom sticky-top barra">
+    <div class="container">
+      <a class="navbar-brand marca d-flex align-items-center gap-2" href="#inicio">
+        <img src="../recursos/logo_64.png" alt="" width="38" height="38" class="rounded-3">
+        PasoAPaso <span class="badge text-bg-primary align-middle">2.0</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#empezar">Empezar</a></li>
+          <li class="nav-item"><a class="nav-link" href="#cuenta">Tu cuenta</a></li>
+          <li class="nav-item"><a class="nav-link" href="#comandos">Qué puedes pedir</a></li>
+          <li class="nav-item"><a class="nav-link" href="#voz">Voz</a></li>
+          <li class="nav-item"><a class="nav-link" href="#problemas">Problemas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#admin">Administrador</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <div class="container py-5">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <p class="hero-etiqueta mb-2">Centro de ayuda · Versión 2.0</p>
+          <h1 class="display-5 fw-bold">Aprende a usar la computadora, paso a paso.</h1>
+          <p class="lead mb-4">PasoAPaso te acompaña con la voz, te muestra las teclas y guarda tus consultas en una cuenta con base de datos. Aquí encuentras cómo instalarlo, cómo entrar y qué hacer si algo falla.</p>
+          <div class="d-flex flex-wrap gap-2">
+            <a class="btn btn-light btn-lg" href="#empezar">Cómo empezar</a>
+            <a class="btn btn-outline-light btn-lg" href="http://127.0.0.1:8765/portal" target="_blank" rel="noopener">Abrir mi cuenta</a>
+            <a class="btn btn-outline-light btn-lg" href="#problemas">Problemas comunes</a>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="tarjeta-hero">
+            <p class="small text-uppercase fw-semibold mb-2">Ahora puedes hablarle</p>
+            <p class="ejemplo-orden mb-3">🎤 «abre la calculadora y el bloc de notas»</p>
+            <p class="small mb-2">PasoAPaso te mostrará las teclas, por ejemplo:</p>
+            <span class="tecla">⊞ Windows</span> <span class="mx-1">+</span> <span class="tecla">calculadora</span> <span class="mx-1">+</span> <span class="tecla">Enter</span>
+            <hr class="border-light opacity-25 my-3">
+            <p class="small mb-0">🔐 Tu cuenta, tu historial y el panel privado del administrador viven en una base de datos SQLite.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="seccion" id="empezar">
+      <div class="container">
+        <h2 class="titulo-seccion">Empieza en 3 pasos</h2>
+        <p class="subtitulo-seccion">Solo necesitas Windows 10 u 11 y conexión para crear tu cuenta.</p>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card h-100 tarjeta">
+              <div class="card-body">
+                <span class="paso-numero">1</span>
+                <h3 class="h5 mt-3">Instala Python y los componentes</h3>
+                <p>Descarga Python 3.10 o más nuevo desde <strong>python.org</strong> y marca <strong>«Add Python to PATH»</strong>. Luego abre una terminal en la carpeta del proyecto:</p>
+                <pre class="bloque-codigo mb-0"><code>python -m pip install -r requirements.txt</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 tarjeta">
+              <div class="card-body">
+                <span class="paso-numero">2</span>
+                <h3 class="h5 mt-3">Abre PasoAPaso</h3>
+                <p>Haz doble clic en <code>iniciar.bat</code>. Primero verás el logo y luego la pantalla para entrar o crear tu cuenta con tu teléfono, tu nombre y una clave de 4 números.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 tarjeta">
+              <div class="card-body">
+                <span class="paso-numero">3</span>
+                <h3 class="h5 mt-3">Habla o escribe</h3>
+                <p>Presiona el micrófono y pide lo que necesitas. Si prefieres, cambia a <strong>Escribir</strong>. PasoAPaso lo hace contigo y te explica cada paso.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="alert alert-primary alerta-modo mt-4 mb-0" role="note">
+          <strong>¿No quieres instalar nada?</strong> También puedes abrir el portal en tu navegador para crear tu cuenta y ver tu historial. La app de Windows es la que mueve el mouse y el teclado; un navegador no puede hacer eso por seguridad.
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion-blanca" id="cuenta">
+      <div class="container">
+        <h2 class="titulo-seccion">Tu cuenta y tu historial</h2>
+        <p class="subtitulo-seccion">La base de datos guarda lo necesario para ayudarte y para que el administrador mejore las explicaciones.</p>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card h-100 tarjeta">
+              <div class="card-body">
+                <h3 class="h5">Entrar es fácil</h3>
+                <p class="mb-0">Tu usuario es tu número de teléfono y tu clave es de 4 a 8 números. No necesitas correo ni tarjeta. Si olvidas la clave, el administrador puede generarte una nueva.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 tarjeta">
+              <div class="card-body">
+                <h3 class="h5">Tu historial</h3>
+                <p class="mb-0">En la app, abre <strong>Mi historial</strong>. En el navegador, entra a <code>http://127.0.0.1:8765/portal</code> con tu cuenta. Ahí ves lo que pediste, cómo lo hiciste y qué respondió PasoAPaso.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 tarjeta">
+              <div class="card-body">
+                <h3 class="h5">Tus datos, tus reglas</h3>
+                <p class="mb-0">Puedes cambiar tu clave o borrar tu cuenta y todas tus consultas desde el portal. Solo tú y el administrador pueden ver tus datos. <a href="http://127.0.0.1:8765/privacidad" target="_blank" rel="noopener">Leer la política de privacidad</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" id="comandos">
+      <div class="container">
+        <h2 class="titulo-seccion">Qué puedes pedirle</h2>
+        <p class="subtitulo-seccion">Puedes juntar varias cosas en un solo mensaje, separadas por «y», por comas o por «luego».</p>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle tabla-comandos">
+            <thead>
+              <tr><th scope="col">Qué quieres hacer</th><th scope="col">Ejemplo</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Abrir programas</td><td><code>abre la calculadora y el bloc de notas</code></td></tr>
+              <tr><td>Crear una carpeta</td><td><code>crea una carpeta llamada Tareas en el escritorio</code></td></tr>
+              <tr><td>Abrir una carpeta</td><td><code>abre la carpeta Proyectos</code> · <code>abre mis descargas</code></td></tr>
+              <tr><td>Tomar una captura de pantalla</td><td><code>toma una captura de pantalla</code></td></tr>
+              <tr><td>Buscar en internet</td><td><code>busca recetas de pupusas en google</code></td></tr>
+              <tr><td>Ver videos en YouTube</td><td><code>reproduce música de Juan Gabriel en youtube</code></td></tr>
+              <tr><td>Abrir una página web</td><td><code>entra a facebook.com</code> · <code>abre gmail</code></td></tr>
+              <tr><td>Controlar la computadora</td><td><code>sube el volumen</code> · <code>muestra el escritorio</code> · <code>cierra la ventana</code></td></tr>
+              <tr><td>Escribir un texto</td><td><code>escribe "hola, mundo"</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion-blanca" id="voz">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6">
+            <h2 class="titulo-seccion">El chat de voz es el predeterminado</h2>
+            <p>Al abrir la app, la pestaña <strong>Hablar</strong> aparece primero. Presiona el micrófono, espera el tono y habla con naturalidad. PasoAPaso te muestra lo que entendió y te pide confirmar antes de hacer algo.</p>
+            <ul>
+              <li>Reconocimiento de voz en español (necesita internet).</li>
+              <li>Si no hay micrófono o no instalaste los componentes, puedes usar <strong>Escribir</strong>.</li>
+              <li>Puedes activar <strong>«Leer los pasos en voz alta»</strong> para que la app te explique hablando.</li>
+              <li>Con <strong>«Manos libres»</strong>, vuelve a escuchar cuando termina una demostración.</li>
+            </ul>
+            <p class="text-secondary">Para instalar la voz:</p>
+            <pre class="bloque-codigo"><code>python -m pip install SpeechRecognition sounddevice</code></pre>
+          </div>
+          <div class="col-lg-6">
+            <div class="card tarjeta">
+              <div class="card-body">
+                <h3 class="h5">Si el micrófono no funciona</h3>
+                <ol class="mb-0">
+                  <li>Revisa que Windows permita usar el micrófono en <strong>Configuración → Privacidad → Micrófono</strong>.</li>
+                  <li>Comprueba que el micrófono esté conectado y seleccionado como entrada.</li>
+                  <li>Instala los componentes con el comando de la izquierda.</li>
+                  <li>Si el reconocimiento no conecta, revisa tu internet o escribe la orden.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" id="problemas">
+      <div class="container">
+        <h2 class="titulo-seccion">Problemas comunes</h2>
+        <p class="subtitulo-seccion">Toca una pregunta para ver la solución.</p>
+        <div class="accordion" id="preguntas">
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#p1" aria-expanded="true" aria-controls="p1">Al abrir el programa dice que falta un componente</button>
+            </h3>
+            <div id="p1" class="accordion-collapse collapse show" data-bs-parent="#preguntas">
+              <div class="accordion-body">Abre una terminal dentro de la carpeta de PasoAPaso y escribe <code>python -m pip install -r requirements.txt</code>. Solo necesitas internet esta vez para instalarlo.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p2" aria-expanded="false" aria-controls="p2">Hago doble clic en iniciar.bat y no pasa nada</button>
+            </h3>
+            <div id="p2" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+              <div class="accordion-body">Lo más probable es que Python no esté instalado o que no se marcó <strong>«Add Python to PATH»</strong>. Reinstala Python marcando esa casilla. Para ver el mensaje de error, abre una terminal en la carpeta y escribe <code>python main.py</code>.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p3" aria-expanded="false" aria-controls="p3">No puedo entrar: dice que el teléfono o la clave no son correctos</button>
+            </h3>
+            <div id="p3" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+              <div class="accordion-body">Revisa que el teléfono sea el mismo con el que creaste la cuenta y que la clave tenga entre 4 y 8 números. Si la olvidaste, pídele al administrador que te genere una clave nueva desde el panel privado.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p4" aria-expanded="false" aria-controls="p4">No aparece la voz o el micrófono no responde</button>
+            </h3>
+            <div id="p4" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+              <div class="accordion-body">Instala <code>SpeechRecognition</code> y <code>sounddevice</code> (ver la sección Voz). Revisa los permisos del micrófono en Windows y que haya conexión a internet. Mientras tanto, usa la pestaña <strong>Escribir</strong>.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p5" aria-expanded="false" aria-controls="p5">¿Dónde está la base de datos?</button>
+            </h3>
+            <div id="p5" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+              <div class="accordion-body">Por defecto se guarda en <code>datos/pasoapaso.db</code>, dentro de la carpeta del proyecto. Si usas el servidor en internet, se guarda en la carpeta <code>/app/datos</code> del servidor. Puedes cambiar la ubicación con la variable <code>PASOAPASO_DATOS</code>.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p6" aria-expanded="false" aria-controls="p6">¿Quién ve lo que escribo?</button>
+            </h3>
+            <div id="p6" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+              <div class="accordion-body">Solo tú y el administrador de PasoAPaso. El panel del administrador está protegido con otra clave. Si configuras Gemini, solo se envía el texto de la orden, nunca tu nombre, teléfono o clave.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p7" aria-expanded="false" aria-controls="p7">¿Necesita internet?</button>
+            </h3>
+            <div id="p7" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+              <div class="accordion-body">Para crear la cuenta, guardar las consultas, usar la voz y consultar a la IA, sí. Las acciones sobre la computadora ocurren en tu equipo. Si no hay conexión, la app puede usar las reglas locales y guardar lo que pase para enviarlo después.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p8" aria-expanded="false" aria-controls="p8">Pedí algo que no está en la lista y no me entendió</button>
+            </h3>
+            <div id="p8" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+              <div class="accordion-body">Si configuraste Gemini, la app intenta razonar la orden y convertirla a una acción permitida. Si no hay clave o la IA no está segura, usa el diccionario local. Prueba con palabras más directas: «abre la calculadora», «crea una carpeta Tareas», «busca recetas en Google».</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p9" aria-expanded="false" aria-controls="p9">En YouTube el clic cae en un lugar equivocado</button>
+            </h3>
+            <div id="p9" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+              <div class="accordion-body">El clic en el primer video se hace en una posición aproximada de la pantalla. Abre <code>pasoapaso/configuracion.py</code> y cambia <code>POSICION_PRIMER_VIDEO</code>, o pon <code>REPRODUCIR_PRIMER_RESULTADO = False</code> para que solo muestre los resultados.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p10" aria-expanded="false" aria-controls="p10">¿Cómo detengo una demostración?</button>
+            </h3>
+            <div id="p10" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+              <div class="accordion-body">Presiona el botón <strong>Detener</strong> del panel, o lleva el mouse a la esquina superior izquierda de la pantalla. En modo Instantáneo no hay panel, así que usa la esquina.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p11" aria-expanded="false" aria-controls="p11">¿Qué pasa si borro mi cuenta?</button>
+            </h3>
+            <div id="p11" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+              <div class="accordion-body">Se borran tu cuenta y todas tus consultas de la base de datos. No se puede deshacer. Puedes hacerlo desde <strong>Mi cuenta</strong> en el portal o pedírselo al administrador.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p12" aria-expanded="false" aria-controls="p12">¿Cómo uso la app en otra computadora?</button>
+            </h3>
+            <div id="p12" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+              <div class="accordion-body">Copia la carpeta del proyecto o descarga el ZIP, instala los componentes y entra con tu mismo teléfono y clave. Si el servidor está en internet, configura <code>PASOAPASO_API_URL</code> con su dirección; si no, cada computadora tendrá su propia base local.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion-blanca" id="admin">
+      <div class="container">
+        <div class="row g-4 align-items-start">
+          <div class="col-lg-7">
+            <h2 class="titulo-seccion">Para el administrador</h2>
+            <p>El panel privado está en <code>http://127.0.0.1:8765/admin</code> cuando la app está abierta, o en la dirección del servidor si lo desplegaste en internet.</p>
+            <ul>
+              <li><strong>Resumen:</strong> personas registradas, consultas, uso de IA y acciones más pedidas.</li>
+              <li><strong>Usuarios:</strong> buscar, ver el historial, activar o desactivar, generar una clave nueva y borrar.</li>
+              <li><strong>Consultas:</strong> filtrar por texto, estado, origen y uso de IA; ver la interpretación y lo que se ejecutó.</li>
+              <li><strong>Inteligencia artificial:</strong> activar o desactivar Gemini y ver qué consultas resolvió.</li>
+              <li><strong>Exportar CSV:</strong> descarga todas las consultas para analizarlas en Excel.</li>
+            </ul>
+            <p class="mb-0">La clave inicial de ejemplo es <code>admin</code> / <code>PasoAPaso2026</code>. <strong>Cámbiala</strong> en <strong>Mi clave</strong> antes de mostrar el proyecto.</p>
+          </div>
+          <div class="col-lg-5">
+            <div class="card tarjeta">
+              <div class="card-body">
+                <h3 class="h5">Seguridad</h3>
+                <ul class="mb-0">
+                  <li>Las claves se guardan cifradas con PBKDF2-SHA256.</li>
+                  <li>La sesión del administrador usa una cookie firmada y privada.</li>
+                  <li>El registro de usuarios se puede cerrar desde el panel.</li>
+                  <li>Nunca compartas el archivo <code>.env</code> ni la clave de Gemini.</li>
+                  <li>Haz copias de seguridad de <code>datos/pasoapaso.db</code>.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" id="reporte">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="titulo-seccion">Reportar un problema</h2>
+            <p class="subtitulo-seccion">Llena el formulario y te preparamos un reporte listo para copiar y enviar al equipo.</p>
+            <form id="formulario-reporte" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label" for="nombre">Tu nombre</label>
+                  <input class="form-control" id="nombre" name="nombre" type="text" required>
+                  <div class="invalid-feedback">Escribe tu nombre.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="tipo">Tipo de problema</label>
+                  <select class="form-select" id="tipo" name="tipo" required>
+                    <option value="" selected disabled>Elige una opción</option>
+                    <option>El programa no abre</option>
+                    <option>No puedo entrar a mi cuenta</option>
+                    <option>El micrófono o la voz no funcionan</option>
+                    <option>Una acción no funciona</option>
+                    <option>Se detuvo a la mitad</option>
+                    <option>Tengo una sugerencia</option>
+                    <option>Otro</option>
+                  </select>
+                  <div class="invalid-feedback">Elige el tipo de problema.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="windows">Tu versión de Windows</label>
+                  <select class="form-select" id="windows" name="windows">
+                    <option>Windows 11</option>
+                    <option>Windows 10</option>
+                    <option>No lo sé</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="orden">Lo que le pediste a PasoAPaso</label>
+                  <input class="form-control" id="orden" name="orden" type="text" placeholder="Por ejemplo: abre la calculadora">
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="descripcion">¿Qué pasó?</label>
+                  <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required></textarea>
+                  <div class="invalid-feedback">Cuéntanos qué pasó.</div>
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" id="instantaneo" name="instantaneo" type="checkbox">
+                    <label class="form-check-label" for="instantaneo">Estaba usando el modo Instantáneo</label>
+                  </div>
+                </div>
+                <div class="col-12 d-flex flex-wrap gap-2">
+                  <button class="btn btn-primary" type="submit">Preparar mi reporte</button>
+                  <button class="btn btn-outline-secondary" type="reset">Borrar todo</button>
+                </div>
+              </div>
+            </form>
+
+            <div class="card tarjeta mt-4 d-none" id="salida-reporte">
+              <div class="card-body">
+                <h3 class="h5">Tu reporte está listo</h3>
+                <p class="text-secondary">Cópialo y envíaselo al equipo de PasoAPaso.</p>
+                <textarea class="form-control reporte-texto" id="texto-reporte" rows="9" readonly></textarea>
+                <div class="d-flex align-items-center gap-3 mt-3">
+                  <button class="btn btn-primary" id="boton-copiar" type="button">Copiar reporte</button>
+                  <span class="text-success fw-semibold d-none" id="aviso-copiado" role="status">¡Copiado!</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion-blanca" id="equipo">
+      <div class="container">
+        <h2 class="titulo-seccion">El equipo</h2>
+        <p class="subtitulo-seccion">Proyecto de las clases de Programación y Diseño Web.</p>
+        <div class="row g-3">
+          <div class="col-6 col-md-3"><div class="card tarjeta text-center h-100"><div class="card-body"><span class="avatar">KC</span><p class="fw-semibold mb-0 mt-3">Kevin Cruz</p></div></div></div>
+          <div class="col-6 col-md-3"><div class="card tarjeta text-center h-100"><div class="card-body"><span class="avatar">EA</span><p class="fw-semibold mb-0 mt-3">Eduardo Antonio</p></div></div></div>
+          <div class="col-6 col-md-3"><div class="card tarjeta text-center h-100"><div class="card-body"><span class="avatar">KB</span><p class="fw-semibold mb-0 mt-3">Kevin Betanzo</p></div></div></div>
+          <div class="col-6 col-md-3"><div class="card tarjeta text-center h-100"><div class="card-body"><span class="avatar">DP</span><p class="fw-semibold mb-0 mt-3">Daniela Portillo</p></div></div></div>
+          <div class="col-6 col-md-3"><div class="card tarjeta text-center h-100"><div class="card-body"><span class="avatar">YP</span><p class="fw-semibold mb-0 mt-3">Yilber Padilla</p></div></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie py-4">
+    <div class="container d-flex flex-wrap justify-content-between gap-2">
+      <span>PasoAPaso 2.0 · Tu ayudante para aprender a usar la computadora</span>
+      <span><a href="#inicio">Volver arriba ↑</a> · <a href="http://127.0.0.1:8765/portal" target="_blank" rel="noopener">Mi cuenta</a></span>
+    </div>
+  </footer>
+
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/soporte.js"></script>
+</body>
+</html>

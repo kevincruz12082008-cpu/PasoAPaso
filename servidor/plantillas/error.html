@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Error {{codigo}} · PasoAPaso</title>
+  <link rel="icon" href="/recursos/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/estatico/estilos.css">
+</head>
+<body class="sitio">
+  <main class="contenedor pagina">
+    <section class="acceso" style="min-height:60vh">
+      <div class="acceso-lateral">
+        <img src="/recursos/logo_128.png" width="80" height="80" alt="" class="acceso-logo">
+        <p class="etiqueta">Error {{codigo}}</p>
+        <h1>Algo no salió como esperábamos</h1>
+        <p>{{mensaje}}</p>
+        <div class="acciones-hero">
+          <a class="boton boton-primario" href="/">Volver al inicio</a>
+          <a class="boton boton-contorno" href="/portal">Mi cuenta</a>
+        </div>
+      </div>
+      <div class="tarjeta-panel">
+        <h2>¿Qué puedo hacer?</h2>
+        <ul class="lista-check">
+          <li>Revisa que la dirección esté bien escrita.</li>
+          <li>Vuelve a iniciar sesión si tu sesión venció.</li>
+          <li>Si el problema sigue, abre el centro de ayuda.</li>
+        </ul>
+        <p class="texto-pequeno">PasoAPaso v{{version}} · {{anio}}</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

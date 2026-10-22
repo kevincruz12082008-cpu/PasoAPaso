@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{titulo}} · Administración PasoAPaso</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" href="/recursos/favicon.ico" sizes="any">
+  <link rel="icon" href="/recursos/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/estatico/estilos.css">
+</head>
+<body class="admin">
+  <a class="saltar" href="#contenido-admin">Saltar al contenido</a>
+  <aside class="lateral">
+    <a class="marca marca-admin" href="/admin">
+      <img src="/recursos/logo_64.png" width="42" height="42" alt="">
+      <span class="marca-texto"><strong>PasoAPaso</strong><small>Administración</small></span>
+    </a>
+    <nav class="nav-admin" aria-label="Administración">
+      {{nav}}
+    </nav>
+    <div class="lateral-pie">
+      <a href="/" target="_blank" rel="noopener">Ver el sitio ↗</a>
+      <span>v{{version}}</span>
+    </div>
+  </aside>
+
+  <div class="contenido-admin">
+    <header class="barra-admin">
+      <span class="chip chip-privado">🔒 Panel privado</span>
+      <div class="admin-usuario">
+        <span class="avatar">{{admin_iniciales}}</span>
+        <span>{{admin_nombre}}</span>
+      </div>
+    </header>
+    <main id="contenido-admin" class="pagina-admin">
+      {{aviso}}
+      {{contenido}}
+    </main>
+    <footer class="pie-admin">PasoAPaso v{{version}} · Los datos son privados · {{anio}}</footer>
+  </div>
+  <script src="/estatico/app.js" defer></script>
+</body>
+</html>

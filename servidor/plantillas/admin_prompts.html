@@ -1,0 +1,55 @@
+<div class="admin-cabecera">
+  <div>
+    <p class="etiqueta">Historial</p>
+    <h1>Consultas</h1>
+    <p>{{total}} consultas guardadas. Aquí ves lo que escriben y dicen las personas.</p>
+  </div>
+  <div class="admin-cabecera-acciones">
+    <a class="boton boton-suave" href="/admin/exportar.csv">⬇ Exportar CSV</a>
+  </div>
+</div>
+
+{{mensajes}}
+
+<section class="tarjeta-panel">
+  <form method="get" action="/admin/prompts" class="filtros filtros-anchos">
+    <div class="campo campo-crece">
+      <label for="q">Buscar</label>
+      <input id="q" name="q" type="search" value="{{q}}" placeholder="Texto, nombre o teléfono">
+    </div>
+    <div class="campo">
+      <label for="estado">Resultado</label>
+      <select id="estado" name="estado">
+        <option value="">Todos</option>
+        {{opciones_estado}}
+      </select>
+    </div>
+    <div class="campo">
+      <label for="origen">Cómo</label>
+      <select id="origen" name="origen">
+        <option value="">Todos</option>
+        {{opciones_origen}}
+      </select>
+    </div>
+    <div class="campo">
+      <label for="ia">Inteligencia</label>
+      <select id="ia" name="ia">
+        <option value="">Todas</option>
+        <option value="1"{{ia_sel_1}}>Con IA</option>
+        <option value="0"{{ia_sel_0}}>Solo reglas</option>
+      </select>
+    </div>
+    <button class="boton boton-primario" type="submit">Filtrar</button>
+    <a class="boton boton-suave" href="/admin/prompts">Limpiar</a>
+  </form>
+</section>
+
+<section class="tarjeta-panel">
+  <div class="tabla-envoltura">
+    <table class="tabla">
+      <thead><tr><th>#</th><th>Consulta</th><th>Cómo</th><th>Resultado</th><th>Inteligencia</th><th>Fecha</th></tr></thead>
+      <tbody>{{filas}}</tbody>
+    </table>
+  </div>
+  {{paginacion}}
+</section>

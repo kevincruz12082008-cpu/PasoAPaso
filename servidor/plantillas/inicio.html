@@ -1,0 +1,122 @@
+<section class="hero">
+  <div class="hero-texto">
+    <p class="etiqueta">Asistente para Windows 10 y 11</p>
+    <h1>Aprende a usar la computadora, <span class="resaltado">paso a paso</span>.</h1>
+    <p class="entrada">
+      Habla o escribe lo que quieres hacer. PasoAPaso lo hace contigo frente a tus ojos:
+      mueve el mouse, presiona las teclas y te explica cada paso con palabras sencillas.
+    </p>
+    <div class="acciones-hero">
+      <a class="boton boton-primario boton-grande" href="/registro">Crear mi cuenta gratis</a>
+      <a class="boton boton-contorno boton-grande" href="#entrar">Ya tengo cuenta</a>
+    </div>
+    <ul class="lista-ventajas">
+      <li><span>✓</span> Sin instalar nada raro: la app corre en tu Windows.</li>
+      <li><span>✓</span> Voz primero, texto cuando lo prefieras.</li>
+      <li><span>✓</span> Tus consultas quedan guardadas en tu cuenta.</li>
+    </ul>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <div class="tarjeta-demo">
+      <div class="demo-cabecera">
+        <img src="/recursos/logo_64.png" alt="" width="34" height="34">
+        <strong>PasoAPaso</strong>
+        <span class="chip chip-verde">Enseñando</span>
+      </div>
+      <div class="demo-burbuja demo-tuya">abre la calculadora y el bloc de notas</div>
+      <div class="demo-burbuja demo-app">
+        <span class="mini-titulo">Esto es lo que voy a hacer</span>
+        <ol>
+          <li>Abrir la Calculadora</li>
+          <li>Abrir el Bloc de notas</li>
+        </ol>
+      </div>
+      <div class="demo-teclas">
+        <span class="tecla">⊞ Windows</span><span class="mas">+</span>
+        <span class="tecla">calculadora</span><span class="mas">+</span>
+        <span class="tecla">Enter</span>
+      </div>
+    </div>
+    <div class="sello-voz"><span>🎤</span> También puedes hablarle</div>
+  </div>
+</section>
+
+<section class="seccion-caracteristicas" aria-label="Qué hace PasoAPaso">
+  <article class="tarjeta-caracteristica">
+    <span class="icono-caracteristica">🖱️</span>
+    <h2>Te enseña de verdad</h2>
+    <p>No solo te dice qué hacer: lo hace contigo, con el mouse y el teclado reales, para que lo veas y lo repitas.</p>
+  </article>
+  <article class="tarjeta-caracteristica">
+    <span class="icono-caracteristica">🎙️</span>
+    <h2>Escucha tu voz</h2>
+    <p>Habla con naturalidad. Si no sabe qué quisiste decir, la inteligencia artificial lo piensa y lo traduce a una acción segura.</p>
+  </article>
+  <article class="tarjeta-caracteristica">
+    <span class="icono-caracteristica">🔒</span>
+    <h2>Tu cuenta, tus datos</h2>
+    <p>El administrador ve tus consultas para ayudarte. Tú puedes revisar tu historial, cambiar tu clave o borrar tu cuenta.</p>
+  </article>
+</section>
+
+<section class="seccion-como" id="como">
+  <div class="seccion-cabecera">
+    <p class="etiqueta">Así de fácil</p>
+    <h2>Empieza en tres pasos</h2>
+  </div>
+  <div class="pasos-grid">
+    <div class="paso">
+      <span class="paso-numero">1</span>
+      <h3>Crea tu cuenta</h3>
+      <p>Solo tu nombre, tu teléfono y una clave de 4 números. Nada de correos ni contraseñas difíciles.</p>
+    </div>
+    <div class="paso">
+      <span class="paso-numero">2</span>
+      <h3>Abre la app en tu PC</h3>
+      <p>Descarga PasoAPaso, inicia sesión con la misma cuenta y pide lo que necesitas con tu voz.</p>
+    </div>
+    <div class="paso">
+      <span class="paso-numero">3</span>
+      <h3>Mira y aprende</h3>
+      <p>PasoAPaso te muestra las teclas, mueve el mouse y te explica todo mientras lo hace.</p>
+    </div>
+  </div>
+</section>
+
+<section class="seccion-entrar" id="entrar">
+  <div class="entrar-texto">
+    <p class="etiqueta">Tu cuenta</p>
+    <h2>Entra para ver tu historial</h2>
+    <p>Desde aquí puedes revisar lo que le has pedido a PasoAPaso, cambiar tu clave y descargar la app.</p>
+    <p class="texto-pequeno">¿Eres el administrador? <a href="/admin/entrar">Entra al panel privado</a>.</p>
+  </div>
+  <div class="tarjeta-formulario">
+    {{mensajes}}
+    <h3>Entrar</h3>
+    <form method="post" action="/entrar" class="formulario">
+      {{csrf}}
+      <div class="campo">
+        <label for="telefono">Número de teléfono</label>
+        <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel"
+               placeholder="9999-9999" value="{{telefono}}" required>
+      </div>
+      <div class="campo">
+        <label for="clave">Tu clave</label>
+        <div class="campo-clave">
+          <input id="clave" name="clave" type="password" inputmode="numeric" pattern="[0-9]{4,8}"
+                 autocomplete="current-password" placeholder="4 a 8 números" required>
+          <button type="button" class="ver-clave" data-ver-clave="clave" aria-label="Mostrar u ocultar la clave">👁</button>
+        </div>
+      </div>
+      <button class="boton boton-primario boton-ancho" type="submit">Entrar a mi cuenta</button>
+    </form>
+    <p class="pie-formulario">¿Todavía no tienes cuenta? <a href="/registro">Crea una gratis</a>.</p>
+  </div>
+</section>
+
+<section class="seccion-confianza">
+  <div class="confianza-item"><strong>Hecho para personas reales</strong><span>Letras grandes, pasos cortos y lenguaje claro.</span></div>
+  <div class="confianza-item"><strong>Funciona sin internet</strong><span>Las acciones ocurren en tu computadora. Solo la cuenta y la IA usan la red.</span></div>
+  <div class="confianza-item"><strong>Se detiene cuando quieras</strong><span>Botón «Detener» o el mouse a la esquina superior izquierda.</span></div>
+</section>

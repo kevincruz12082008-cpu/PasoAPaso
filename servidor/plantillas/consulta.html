@@ -1,0 +1,41 @@
+<div class="migas"><a href="/portal">← Volver a mi cuenta</a></div>
+
+<section class="consulta-cabecera">
+  <div>
+    <p class="etiqueta">Consulta #{{prompt_id}}</p>
+    <h1>Lo que le pediste a PasoAPaso</h1>
+    <p class="consulta-texto">«{{prompt_texto}}»</p>
+  </div>
+  <div class="consulta-chips">{{origen}} {{estado}} {{ia}}</div>
+</section>
+
+{{mensajes}}
+
+<div class="ficha-grid">
+  <div class="ficha"><span>Fecha</span><strong>{{fecha}}</strong></div>
+  <div class="ficha"><span>Interpretado por</span><strong>{{modelo}}</strong></div>
+  <div class="ficha"><span>Duración</span><strong>{{duracion}}</strong></div>
+</div>
+
+{{error}}
+
+<section class="tarjeta-panel">
+  <h2>Qué hizo PasoAPaso</h2>
+  {{ordenes}}
+</section>
+
+<section class="tarjeta-panel">
+  <h2>¿Te sirvió esta consulta?</h2>
+  <p class="texto-pequeno">Tu respuesta ayuda al administrador a mejorar las explicaciones.</p>
+  <form method="post" action="/portal/feedback" class="formulario formulario-en-linea">
+    {{csrf}}
+    <input type="hidden" name="prompt_id" value="{{prompt_id}}">
+    <label class="opcion-radio"><input type="radio" name="util" value="1" {{checked_si}} required> Sí, me sirvió</label>
+    <label class="opcion-radio"><input type="radio" name="util" value="0" {{checked_no}}> No, no me sirvió</label>
+    <div class="campo campo-crece">
+      <label for="comentario">Comentario <span class="opcional">(opcional)</span></label>
+      <input id="comentario" name="comentario" type="text" maxlength="300" placeholder="¿Qué podría mejorar?">
+    </div>
+    <button class="boton boton-primario" type="submit">Enviar respuesta</button>
+  </form>
+</section>

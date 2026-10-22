@@ -1,0 +1,48 @@
+<div class="admin-cabecera">
+  <div>
+    <p class="etiqueta">Panel privado</p>
+    <h1>Resumen</h1>
+    <p>Todo lo que pasa en PasoAPaso, en un solo lugar.</p>
+  </div>
+  <div class="admin-cabecera-acciones">
+    <a class="boton boton-suave" href="/admin/exportar.csv">⬇ Exportar consultas</a>
+    <a class="boton boton-primario" href="/admin/prompts">Ver consultas</a>
+  </div>
+</div>
+
+{{aviso_clave}}
+{{mensajes}}
+
+<div class="stats-grid">
+  {{tarjetas}}
+</div>
+
+<div class="admin-grid-2">
+  <section class="tarjeta-panel">
+    <div class="panel-cabecera">
+      <div><h2>Consultas de los últimos 7 días</h2><p class="texto-pequeno">Cada barra es un día. Pasa el mouse para ver el número exacto.</p></div>
+      {{ia_estado}}
+    </div>
+    {{grafico}}
+  </section>
+
+  <section class="tarjeta-panel">
+    <div class="panel-cabecera">
+      <div><h2>Acciones más pedidas</h2><p class="texto-pequeno">Lo que más quiere hacer la gente.</p></div>
+    </div>
+    <ul class="top-lista">{{top}}</ul>
+  </section>
+</div>
+
+<section class="tarjeta-panel">
+  <div class="panel-cabecera">
+    <div><h2>Últimas consultas</h2><p class="texto-pequeno">Lo más reciente que escribieron o dijeron.</p></div>
+    <a class="boton boton-suave boton-pequeno" href="/admin/prompts">Ver todas</a>
+  </div>
+  <div class="tabla-envoltura">
+    <table class="tabla">
+      <thead><tr><th>Lo que pidió</th><th>Cómo</th><th>Resultado</th><th>Inteligencia</th><th>Fecha</th></tr></thead>
+      <tbody>{{filas}}</tbody>
+    </table>
+  </div>
+</section>

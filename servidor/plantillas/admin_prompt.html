@@ -1,0 +1,51 @@
+<div class="migas"><a href="/admin/prompts">← Volver a consultas</a></div>
+
+<div class="admin-cabecera">
+  <div>
+    <p class="etiqueta">Consulta #{{prompt_id}}</p>
+    <h1>Detalle de la consulta</h1>
+    <div class="consulta-chips">{{origen}} {{estado}} {{ia}}</div>
+  </div>
+  <div class="admin-cabecera-acciones">
+    <a class="boton boton-suave" href="/admin/usuarios/{{usuario_id}}">Ver a {{usuario_nombre}}</a>
+  </div>
+</div>
+
+{{mensajes}}
+
+<section class="tarjeta-panel tarjeta-texto">
+  <span class="mini-titulo">Lo que escribió o dijo</span>
+  <p class="texto-consulta">«{{texto}}»</p>
+</section>
+
+{{error}}
+
+<div class="ficha-grid">
+  <div class="ficha"><span>Persona</span><strong>{{usuario_nombre}}</strong><small>{{usuario_telefono}}</small></div>
+  <div class="ficha"><span>Fecha</span><strong>{{fecha}}</strong></div>
+  <div class="ficha"><span>Interpretado por</span><strong>{{modelo}}</strong></div>
+  <div class="ficha"><span>Duración</span><strong>{{duracion}}</strong></div>
+</div>
+
+<section class="tarjeta-panel">
+  <h2>Acciones que entendió PasoAPaso</h2>
+  {{ordenes}}
+</section>
+
+<section class="tarjeta-panel">
+  <h2>Acciones que se ejecutaron</h2>
+  <p class="texto-pequeno">La app reporta aquí lo que realmente pasó en la computadora de la persona.</p>
+  {{acciones}}
+</section>
+
+<section class="tarjeta-panel">
+  <details>
+    <summary>Ver los datos originales (JSON)</summary>
+    <pre class="json">{{json}}</pre>
+  </details>
+</section>
+
+<section class="tarjeta-panel">
+  <h2>Opinión de la persona</h2>
+  {{feedback_html}}
+</section>

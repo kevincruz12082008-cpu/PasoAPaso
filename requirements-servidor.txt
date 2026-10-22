@@ -1,0 +1,4 @@
+# El servidor de PasoAPaso usa solo la biblioteca estándar de Python 3.10+.
+# No necesita Flask, Django, FastAPI ni ninguna otra dependencia.
+# Para desplegarlo, copia el proyecto y ejecuta:
+#     python -m servidor --host 0.0.0.0 --port 8000

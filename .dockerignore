@@ -1,0 +1,16 @@
+.venv
+.deps
+.tmp
+.appdata
+.pruebas
+.pruebas_tmp
+.git
+capturas_app
+datos
+*.db
+*.db-wal
+*.db-shm
+.env
+__pycache__
+*.pyc
+recursos/PasoAPaso.zip

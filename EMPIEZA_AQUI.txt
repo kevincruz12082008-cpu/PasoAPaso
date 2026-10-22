@@ -1,0 +1,45 @@
+PasoAPaso 2.0
+=============
+
+Tu ayudante para aprender a usar la computadora, paso a paso.
+
+CÓMO EMPEZAR (3 pasos)
+----------------------
+1. Instala Python 3.10 o más nuevo desde python.org.
+   Al instalar, marca la casilla "Add Python to PATH".
+
+2. Haz doble clic en "iniciar.bat".
+   La primera vez puede tardar mientras instala los componentes.
+
+3. Cuando aparezca la pantalla de acceso:
+   - Crea tu cuenta con tu nombre, teléfono y una clave de 4 números.
+   - O entra con una cuenta que ya tengas.
+   - Presiona el micrófono y habla, o cambia a "Escribir".
+
+PANEL DEL ADMINISTRADOR
+-----------------------
+Abre: http://127.0.0.1:8765/admin
+Usuario inicial: admin
+Clave inicial:  PasoAPaso2026
+
+CAMBIA ESA CLAVE en "Mi clave" antes de mostrar el proyecto.
+
+SI ALGO NO FUNCIONA
+-------------------
+- Lee "LEEME.md" (sección 13) o abre "soporte/index.html".
+- Revisa el registro en:
+  %APPDATA%\PasoAPaso\pasoapaso.log
+- La base de datos está en:
+  %APPDATA%\PasoAPaso\datos\pasoapaso.db
+
+VOZ
+---
+La voz necesita internet y dos componentes:
+  python -m pip install SpeechRecognition sounddevice
+
+Si no los tienes, la pestaña "Escribir" funciona igual.
+
+MÁS INFORMACIÓN
+---------------
+Lee "LEEME.md". Ahí están la arquitectura, la base de datos, Gemini,
+cómo desplegar el servidor en internet y cómo hacer copias de seguridad.

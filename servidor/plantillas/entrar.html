@@ -1,0 +1,38 @@
+<section class="acceso">
+  <div class="acceso-lateral">
+    <img src="/recursos/logo_256.png" alt="" width="96" height="96" class="acceso-logo">
+    <p class="etiqueta">Bienvenido de nuevo</p>
+    <h1>Entra a tu cuenta</h1>
+    <p>Tu historial y tus datos te esperan. Si olvidaste tu clave, pídele al administrador que te dé una nueva.</p>
+    <ul class="lista-check">
+      <li>Habla o escribe tus órdenes.</li>
+      <li>Mira cómo se hace, paso a paso.</li>
+      <li>Revisa lo que ya aprendiste.</li>
+    </ul>
+  </div>
+  <div class="tarjeta-formulario">
+    {{error}}
+    {{aviso}}
+    <form method="post" action="/entrar" class="formulario">
+      {{csrf}}
+      <input type="hidden" name="next" value="{{next}}">
+      <div class="campo">
+        <label for="telefono">Número de teléfono</label>
+        <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel"
+               placeholder="9999-9999" value="{{telefono}}" autofocus required>
+        <small>El mismo número con el que creaste tu cuenta.</small>
+      </div>
+      <div class="campo">
+        <label for="clave">Tu clave</label>
+        <div class="campo-clave">
+          <input id="clave" name="clave" type="password" inputmode="numeric" pattern="[0-9]{4,8}"
+                 autocomplete="current-password" placeholder="4 a 8 números" required>
+          <button type="button" class="ver-clave" data-ver-clave="clave" aria-label="Mostrar u ocultar la clave">👁</button>
+        </div>
+      </div>
+      <button class="boton boton-primario boton-ancho boton-grande" type="submit">Entrar</button>
+    </form>
+    <p class="pie-formulario">¿No tienes cuenta? <a href="/registro">Crea una gratis</a>.</p>
+    <p class="pie-formulario texto-pequeno"><a href="/admin/entrar">Soy el administrador</a></p>
+  </div>
+</section>
