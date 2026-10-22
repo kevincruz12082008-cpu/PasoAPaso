@@ -16,7 +16,7 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass, field
 
-from pasoapaso.datos.catalogo_apps import CATALOGO
+from datos.catalogo_apps import CATALOGO
 from pasoapaso.datos.sitios import SITIOS
 from pasoapaso.nucleo.interprete import Orden, interpretar
 from pasoapaso.nucleo.validacion import validar_ordenes
