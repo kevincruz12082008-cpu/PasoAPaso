@@ -3,12 +3,13 @@ from __future__ import annotations
 import sys
 import os
 
-# Asegurar que la raíz del proyecto (/app) esté al inicio del path
+# Añadir la carpeta interna 'pasoapaso' directamente al inicio del sys.path
 DIR_SERVIDOR = os.path.dirname(os.path.abspath(__file__))
 DIR_RAIZ = os.path.abspath(os.path.join(DIR_SERVIDOR, ".."))
+DIR_PASOAPASO = os.path.abspath(os.path.join(DIR_RAIZ, "pasoapaso"))
 
-if DIR_RAIZ not in sys.path:
-    sys.path.insert(0, DIR_RAIZ)
+if DIR_PASOAPASO not in sys.path:
+    sys.path.insert(0, DIR_PASOAPASO)
 
 import json
 import logging
@@ -18,7 +19,7 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass, field
 
-# Importación directa desde las carpetas en la raíz del proyecto
+# Importación directa limpia, ya que Python ahora busca dentro de 'pasoapaso'
 from datos.catalogo_apps import CATALOGO
 from datos.sitios import SITIOS
 from nucleo.interprete import Orden, interpretar
