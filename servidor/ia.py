@@ -3,15 +3,12 @@ from __future__ import annotations
 import sys
 import os
 
-# Determinar la carpeta 'servidor', la raíz del proyecto y el directorio superior
+# Asegurar que la raíz del proyecto esté en el path
 DIR_SERVIDOR = os.path.dirname(os.path.abspath(__file__))
 DIR_RAIZ = os.path.abspath(os.path.join(DIR_SERVIDOR, ".."))
-DIR_SUPERIOR = os.path.abspath(os.path.join(DIR_RAIZ, ".."))
 
-# Agregar todas las rutas posibles al inicio de sys.path
-for d in [DIR_RAIZ, DIR_SUPERIOR, DIR_SERVIDOR]:
-    if d not in sys.path:
-        sys.path.insert(0, d)
+if DIR_RAIZ not in sys.path:
+    sys.path.insert(0, DIR_RAIZ)
 
 import json
 import logging
@@ -21,17 +18,11 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass, field
 
-# Importación usando la ruta relativa del paquete pasoapaso
-try:
-    from pasoapaso.datos.catalogo_apps import CATALOGO
-    from pasoapaso.datos.sitios import SITIOS
-    from pasoapaso.nucleo.interprete import Orden, interpretar
-    from pasoapaso.nucleo.validacion import validar_ordenes
-except ModuleNotFoundError:
-    from datos.catalogo_apps import CATALOGO
-    from datos.sitios import SITIOS
-    from nucleo.interprete import Orden, interpretar
-    from nucleo.validacion import validar_ordenes
+# Importar directamente desde la carpeta pasoapaso donde realmente están los archivos
+from pasoapaso.datos.catalogo_apps import CATALOGO
+from pasoapaso.datos.sitios import SITIOS
+from pasoapaso.nucleo.interprete import Orden, interpretar
+from pasoapaso.nucleo.validacion import validar_ordenes
 
 from . import base_datos, config
 
