@@ -3,10 +3,10 @@ from __future__ import annotations
 import sys
 import os
 
-# Asegurar que tanto la raíz del proyecto como la subcarpeta pasoapaso estén en el PATH
+# Añadir la raíz del proyecto al path para que Python reconozca el paquete 'pasoapaso'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, BASE_DIR)
-sys.path.insert(0, os.path.join(BASE_DIR, "pasoapaso"))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
 
 import json
 import logging
@@ -16,17 +16,11 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass, field
 
-# Intentar importaciones en todas sus variantes
-try:
-    from datos.catalogo_apps import CATALOGO
-    from datos.sitios import SITIOS
-    from nucleo.interprete import Orden, interpretar
-    from nucleo.validacion import validar_ordenes
-except ModuleNotFoundError:
-    from pasoapaso.datos.catalogo_apps import CATALOGO
-    from pasoapaso.datos.sitios import SITIOS
-    from pasoapaso.nucleo.interprete import Orden, interpretar
-    from pasoapaso.nucleo.validacion import validar_ordenes
+# Importaciones absolutas desde el paquete principal pasoapaso
+from pasoapaso.datos.catalogo_apps import CATALOGO
+from pasoapaso.datos.sitios import SITIOS
+from pasoapaso.nucleo.interprete import Orden, interpretar
+from pasoapaso.nucleo.validacion import validar_ordenes
 
 from . import base_datos, config
 
