@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -9,8 +11,6 @@ Si no entienden la frase, se le pide a Gemini que la traduzca a una de
 las acciones permitidas. La respuesta de la IA se valida y se convierte
 en órdenes seguras: la IA nunca ejecuta nada por su cuenta.
 """
-
-from __future__ import annotations
 
 import json
 import logging
@@ -28,7 +28,6 @@ from pasoapaso.nucleo.validacion import validar_ordenes
 from . import base_datos, config
 
 LOG = logging.getLogger("pasoapaso.ia")
-
 
 @dataclass
 class Resultado:
