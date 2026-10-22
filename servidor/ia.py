@@ -2,15 +2,11 @@ from __future__ import annotations
 
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-"""Intérprete de órdenes con reglas locales y, si hace falta, Gemini.
-
-Primero se usan las reglas de siempre (rápidas, gratis y sin internet).
-Si no entienden la frase, se le pide a Gemini que la traduzca a una de
-las acciones permitidas. La respuesta de la IA se valida y se convierte
-en órdenes seguras: la IA nunca ejecuta nada por su cuenta.
-"""
+# Asegurar que tanto la raíz del proyecto como la subcarpeta pasoapaso estén en el PATH
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, BASE_DIR)
+sys.path.insert(0, os.path.join(BASE_DIR, "pasoapaso"))
 
 import json
 import logging
@@ -20,10 +16,17 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass, field
 
-from datos.catalogo_apps import CATALOGO
-from datos.sitios import SITIOS
-from nucleo.interprete import Orden, interpretar
-from nucleo.validacion import validar_ordenes
+# Intentar importaciones en todas sus variantes
+try:
+    from datos.catalogo_apps import CATALOGO
+    from datos.sitios import SITIOS
+    from nucleo.interprete import Orden, interpretar
+    from nucleo.validacion import validar_ordenes
+except ModuleNotFoundError:
+    from pasoapaso.datos.catalogo_apps import CATALOGO
+    from pasoapaso.datos.sitios import SITIOS
+    from pasoapaso.nucleo.interprete import Orden, interpretar
+    from pasoapaso.nucleo.validacion import validar_ordenes
 
 from . import base_datos, config
 
