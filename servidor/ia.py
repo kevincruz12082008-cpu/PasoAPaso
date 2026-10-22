@@ -3,7 +3,7 @@ from __future__ import annotations
 import sys
 import os
 
-# Asegurar que la raíz del proyecto esté en el path
+# Asegurar que la raíz del proyecto (/app) esté al inicio del path
 DIR_SERVIDOR = os.path.dirname(os.path.abspath(__file__))
 DIR_RAIZ = os.path.abspath(os.path.join(DIR_SERVIDOR, ".."))
 
@@ -18,11 +18,11 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass, field
 
-# Importar directamente desde la carpeta pasoapaso donde realmente están los archivos
-from pasoapaso.datos.catalogo_apps import CATALOGO
-from pasoapaso.datos.sitios import SITIOS
-from pasoapaso.nucleo.interprete import Orden, interpretar
-from pasoapaso.nucleo.validacion import validar_ordenes
+# Importación directa desde las carpetas en la raíz del proyecto
+from datos.catalogo_apps import CATALOGO
+from datos.sitios import SITIOS
+from nucleo.interprete import Orden, interpretar
+from nucleo.validacion import validar_ordenes
 
 from . import base_datos, config
 
