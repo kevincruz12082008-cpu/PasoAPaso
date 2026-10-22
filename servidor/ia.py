@@ -1,12 +1,18 @@
 from __future__ import annotations
 
+from __future__ import annotations
+
 import sys
 import os
 
-# Añadir la raíz del proyecto al path para que Python reconozca el paquete 'pasoapaso'
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-if BASE_DIR not in sys.path:
-    sys.path.insert(0, BASE_DIR)
+# Obtener la ruta raíz del proyecto (/app) y agregarla al sys.path
+DIRECTORIO_ACTUAL = os.path.dirname(os.path.abspath(__file__))
+RAIZ_PROYECTO = os.path.abspath(os.path.join(DIRECTORIO_ACTUAL, ".."))
+DIRECTORIO_PADRE = os.path.abspath(os.path.join(RAIZ_PROYECTO, ".."))
+
+for ruta in [RAIZ_PROYECTO, DIRECTORIO_PADRE]:
+    if ruta not in sys.path:
+        sys.path.insert(0, ruta)
 
 import json
 import logging
@@ -16,11 +22,17 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass, field
 
-# Importaciones absolutas desde el paquete principal pasoapaso
-from pasoapaso.datos.catalogo_apps import CATALOGO
-from pasoapaso.datos.sitios import SITIOS
-from pasoapaso.nucleo.interprete import Orden, interpretar
-from pasoapaso.nucleo.validacion import validar_ordenes
+# Intentar ambas formas de importación para garantizar compatibilidad total
+try:
+    from datos.catalogo_apps import CATALOGO
+    from datos.sitios import SITIOS
+    from nucleo.interprete import Orden, interpretar
+    from nucleo.validacion import validar_ordenes
+except ModuleNotFoundError:
+    from pasoapaso.datos.catalogo_apps import CATALOGO
+    from pasoapaso.datos.sitios import SITIOS
+    from pasoapaso.nucleo.interprete import Orden, interpretar
+    from pasoapaso.nucleo.validacion import validar_ordenes
 
 from . import base_datos, config
 
