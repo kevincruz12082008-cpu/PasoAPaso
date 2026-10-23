@@ -51,6 +51,7 @@ class ClienteNube:
         ruta: str,
         datos: Optional[dict] = None,
         con_token: bool = True,
+        timeout: Optional[float] = None,
     ) -> dict:
         url = self.base_url + ruta
         cuerpo = None
@@ -62,7 +63,7 @@ class ClienteNube:
             cabeceras["Authorization"] = "Bearer " + self.token
         solicitud = urllib.request.Request(url, data=cuerpo, headers=cabeceras, method=metodo)
         try:
-            with urllib.request.urlopen(solicitud, timeout=self.timeout) as respuesta:
+            with urllib.request.urlopen(solicitud, timeout=timeout or self.timeout) as respuesta:
                 contenido = respuesta.read()
         except urllib.error.HTTPError as error:
             mensaje = f"El servidor respondió con error {error.code}."
@@ -148,6 +149,9 @@ class ClienteNube:
             "POST",
             "/api/interpretar",
             {"texto": texto, "origen": origen},
+            # Gemini puede tardar más que las demás peticiones; con 8 s la app
+            # se rendía antes y caía al modo local sin usar la IA.
+            timeout=max(self.timeout, 35.0),
         )
 
     def reportar(
