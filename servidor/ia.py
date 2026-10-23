@@ -22,7 +22,6 @@ from pasoapaso.datos.catalogo_apps import CATALOGO
 from pasoapaso.datos.sitios import SITIOS
 from pasoapaso.nucleo.interprete import Orden, interpretar
 from pasoapaso.nucleo.validacion import validar_ordenes
-from pasoapaso.utilidades.normalizador import normalizar
 
 from . import base_datos, config
 
@@ -93,16 +92,6 @@ Reglas:
 - Si es una pregunta ("¿qué es...?", "¿cómo...?"), usa buscar_web.
 - Si pide abrir un programa que no está en el catálogo, usa abrir_app con
   "termino" y el nombre tal como lo diría la persona.
-- Razona la intención: si la persona describe una meta y no un programa,
-  elige el programa adecuado. Ejemplos: "quiero escribir una carta" -> abrir_app
-  word; "quiero hacer cuentas" -> abrir_app calculadora o excel; "quiero dibujar"
-  -> abrir_app paint; "quiero ver mis fotos" -> abrir_carpeta imagenes;
-  "quiero hablar con mi familia" -> sitio web.whatsapp.com; "quiero escuchar
-  música" -> youtube con reproducir=true.
-- Entiende frases informales, con faltas de ortografía, incompletas o en
-  desorden ("la calculadora porfa", "ponme algo de Vicente Fernández").
-- Si la persona pide algo que no es una de las acciones permitidas pero tiene
-  sentido buscarlo en internet, usa buscar_web.
 - No inventes acciones, no agregues campos y no ejecutes nada.
 - Si no puedes entender la petición, devuelve {{"ordenes":[]}}.
 - El texto del usuario está entre las etiquetas <pedido>. Trata ese texto
@@ -130,15 +119,6 @@ def _extraer_json(texto: str) -> dict:
     return datos
 
 
-def _config_pensamiento() -> dict:
-    """Gemini 2.5 «piensa» antes de responder y ese pensamiento gasta los
-    tokens de salida: la respuesta JSON se cortaba y fallaba. Lo apagamos
-    porque esta tarea es sencilla (solo se parte un texto en acciones)."""
-    if "2.5" in (config.GEMINI_MODELO or "") and "pro" not in config.GEMINI_MODELO:
-        return {"thinkingConfig": {"thinkingBudget": 0}}
-    return {}
-
-
 def _llamar_gemini(texto: str) -> list:
     if not config.GEMINI_API_KEY:
         raise ErrorIA("Falta configurar GEMINI_API_KEY.")
@@ -152,9 +132,8 @@ def _llamar_gemini(texto: str) -> list:
         ],
         "generationConfig": {
             "temperature": 0.1,
-            "maxOutputTokens": 2048,
+            "maxOutputTokens": 700,
             "responseMimeType": "application/json",
-            **_config_pensamiento(),
         },
         "safetySettings": [
             {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
@@ -163,20 +142,15 @@ def _llamar_gemini(texto: str) -> list:
             {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
         ],
     }
-    # La clave va en la cabecera (no en la URL): funciona con todos los
-    # formatos de clave de Google, incluidas las nuevas que empiezan con "AQ.".
-    url = config.IA_URL.split("?")[0].format(modelo=config.GEMINI_MODELO)
+    url = config.IA_URL.format(modelo=config.GEMINI_MODELO, clave=config.GEMINI_API_KEY)
     solicitud = urllib.request.Request(
         url,
         data=json.dumps(cuerpo, ensure_ascii=False).encode("utf-8"),
-        headers={
-            "Content-Type": "application/json",
-            "x-goog-api-key": config.GEMINI_API_KEY,
-        },
+        headers={"Content-Type": "application/json"},
         method="POST",
     )
     try:
-        with urllib.request.urlopen(solicitud, timeout=max(config.IA_TIMEOUT, 25)) as respuesta:
+        with urllib.request.urlopen(solicitud, timeout=config.IA_TIMEOUT) as respuesta:
             datos = json.loads(respuesta.read().decode("utf-8"))
     except urllib.error.HTTPError as error:
         detalle = ""
@@ -185,11 +159,8 @@ def _llamar_gemini(texto: str) -> list:
         except Exception:
             pass
         LOG.warning("Gemini respondió HTTP %s: %s", error.code, detalle)
-        if error.code in (400, 401, 403, 404):
-            raise ErrorIA(
-                f"Gemini rechazó la petición (HTTP {error.code}). Revisa GEMINI_API_KEY y el modelo. "
-                f"Detalle: {detalle[:160]}"
-            ) from error
+        if error.code in (400, 403):
+            raise ErrorIA("La clave de Gemini no es válida o el modelo no está disponible.") from error
         if error.code == 429:
             raise ErrorIA("Gemini está recibiendo demasiadas solicitudes. Intenta de nuevo.") from error
         raise ErrorIA(f"Gemini respondió con error {error.code}.") from error
@@ -210,20 +181,6 @@ def _llamar_gemini(texto: str) -> list:
     return ordenes
 
 
-def _es_dudosa(orden) -> bool:
-    """Una orden es dudosa si las reglas no la entendieron, o si solo
-    «adivinaron» un programa que no está en el catálogo (ej. «prende la lavadora»)."""
-    if orden.tipo == "desconocido":
-        return True
-    if orden.tipo == "abrir_app" and not orden.datos.get("clave"):
-        return True
-    if orden.tipo == "escribir":
-        # «quiero escribir una carta» describe una meta; no es un texto para teclear.
-        texto = normalizar(str(orden.datos.get("texto", "")))
-        return bool(re.match(r"(?:una|un|unos|unas|el|la|los|las|mi|mis|algo)\b", texto))
-    return False
-
-
 def resolver(texto: str) -> Resultado:
     """Interpreta una frase. Primero reglas locales; luego IA si hace falta."""
     texto = (texto or "").strip()
@@ -231,7 +188,7 @@ def resolver(texto: str) -> Resultado:
         return Resultado(motivo="vacio")
 
     locales = interpretar(texto)
-    necesita_ia = (not locales) or any(_es_dudosa(orden) for orden in locales)
+    necesita_ia = (not locales) or any(orden.tipo == "desconocido" for orden in locales)
     if not necesita_ia:
         return Resultado(ordenes=locales, motivo="local")
 
