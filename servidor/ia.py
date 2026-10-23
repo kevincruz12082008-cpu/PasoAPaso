@@ -1,19 +1,5 @@
 from __future__ import annotations
 
-import sys
-import os
-
-# Obtener rutas absolutas de la estructura interna del proyecto
-DIR_SERVIDOR = os.path.dirname(os.path.abspath(__file__))
-DIR_RAIZ = os.path.abspath(os.path.join(DIR_SERVIDOR, ".."))
-DIR_DATOS = os.path.abspath(os.path.join(DIR_RAIZ, "pasoapaso", "datos"))
-DIR_NUCLEO = os.path.abspath(os.path.join(DIR_RAIZ, "pasoapaso", "nucleo"))
-
-# Inyectar las carpetas directamente en el sys.path para importación plana y segura
-for ruta in [DIR_DATOS, DIR_NUCLEO, DIR_RAIZ, DIR_SERVIDOR]:
-    if ruta not in sys.path:
-        sys.path.insert(0, ruta)
-
 import json
 import logging
 import re
@@ -22,11 +8,17 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass, field
 
-# Importación directa desde los directorios inyectados
-from catalogo_apps import CATALOGO
-from sitios import SITIOS
-from interprete import Orden, interpretar
-from validacion import validar_ordenes
+# Importaciones directas usando la ruta del paquete pasoapaso
+try:
+    from pasoapaso.datos.catalogo_apps import CATALOGO
+    from pasoapaso.datos.sitios import SITIOS
+    from pasoapaso.nucleo.interprete import Orden, interpretar
+    from pasoapaso.nucleo.validacion import validar_ordenes
+except ModuleNotFoundError:
+    from datos.catalogo_apps import CATALOGO
+    from datos.sitios import SITIOS
+    from nucleo.interprete import Orden, interpretar
+    from nucleo.validacion import validar_ordenes
 
 from . import base_datos, config
 
