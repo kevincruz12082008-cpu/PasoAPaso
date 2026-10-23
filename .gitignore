@@ -8,7 +8,7 @@ __pycache__/
 .pruebas/
 .pruebas_tmp/
 .pip-cache/
-datos/
+/datos/
 *.db
 *.db-wal
 *.db-shm
